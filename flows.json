@@ -1,0 +1,22 @@
+[
+    {
+        "id": "36aac8632702d5c6",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 1",
+        "func": "msg.payload = \n{\n    ip:msg.req.socket.remoteAddress\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 340,
+        "wires": [
+            [
+                "ee45d9784724d7d9"
+            ]
+        ]
+    }
+]
