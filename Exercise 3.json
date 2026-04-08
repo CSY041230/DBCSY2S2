@@ -1,0 +1,191 @@
+[
+    {
+        "id": "1d084120e2fef108",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ba4c659e6a82eda1",
+        "type": "http in",
+        "z": "1d084120e2fef108",
+        "name": "",
+        "url": "/api/sensor/:id",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 100,
+        "wires": [
+            [
+                "4755c3d480da1a2b",
+                "73d17f33310b17c5"
+            ]
+        ]
+    },
+    {
+        "id": "07a9d15087442e0a",
+        "type": "http response",
+        "z": "1d084120e2fef108",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 720,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "4755c3d480da1a2b",
+        "type": "debug",
+        "z": "1d084120e2fef108",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "4062fcb048257de2",
+        "type": "http in",
+        "z": "1d084120e2fef108",
+        "name": "",
+        "url": "/api/telemetry",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 280,
+        "wires": [
+            [
+                "1f7d2b453902b063",
+                "ae385cf73bfcf954"
+            ]
+        ]
+    },
+    {
+        "id": "1ca73066b3617672",
+        "type": "http response",
+        "z": "1d084120e2fef108",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 720,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "1f7d2b453902b063",
+        "type": "debug",
+        "z": "1d084120e2fef108",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "73d17f33310b17c5",
+        "type": "function",
+        "z": "1d084120e2fef108",
+        "name": "function 1",
+        "func": "msg.payload = {\n    message: \"GET request received\",\n    status: \"success\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 100,
+        "wires": [
+            [
+                "07a9d15087442e0a"
+            ]
+        ]
+    },
+    {
+        "id": "ae385cf73bfcf954",
+        "type": "function",
+        "z": "1d084120e2fef108",
+        "name": "function 2",
+        "func": "msg.payload = {\n    message: \"GET request received\",\n    status: \"success\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 280,
+        "wires": [
+            [
+                "1ca73066b3617672"
+            ]
+        ]
+    },
+    {
+        "id": "75b0be35cf935841",
+        "type": "http in",
+        "z": "1d084120e2fef108",
+        "name": "",
+        "url": "/api/secure-data",
+        "method": "post",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 280,
+        "y": 420,
+        "wires": [
+            [
+                "f81f3505aa875194",
+                "300bf29983949150"
+            ]
+        ]
+    },
+    {
+        "id": "300bf29983949150",
+        "type": "http response",
+        "z": "1d084120e2fef108",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 720,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "f81f3505aa875194",
+        "type": "debug",
+        "z": "1d084120e2fef108",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 500,
+        "wires": []
+    }
+]
