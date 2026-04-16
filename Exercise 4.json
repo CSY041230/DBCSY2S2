@@ -1,0 +1,220 @@
+[
+    {
+        "id": "432cfe6a4b17110b",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8577cdde65a7f86d",
+        "type": "inject",
+        "z": "432cfe6a4b17110b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"temperature\": 25.5, \"sensor\": \"ESP32_01\"}",
+        "payloadType": "json",
+        "x": 170,
+        "y": 140,
+        "wires": [
+            [
+                "3c95605324307253"
+            ]
+        ]
+    },
+    {
+        "id": "3c95605324307253",
+        "type": "mqtt out",
+        "z": "432cfe6a4b17110b",
+        "name": "",
+        "topic": "campus/lab1/temperature/Dr Soo",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b807c1dca1f57468",
+        "x": 540,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "59fd44695004289e",
+        "type": "inject",
+        "z": "432cfe6a4b17110b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"temperature\": 25.5, \"sensor\": \"ESP32_01\"}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 220,
+        "wires": [
+            [
+                "bd2643e1a8c49d6a"
+            ]
+        ]
+    },
+    {
+        "id": "bd2643e1a8c49d6a",
+        "type": "mqtt out",
+        "z": "432cfe6a4b17110b",
+        "name": "",
+        "topic": "campus/lab2/temperature",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b807c1dca1f57468",
+        "x": 550,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "6f865cda87b8e258",
+        "type": "inject",
+        "z": "432cfe6a4b17110b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"temperature\": 25.5, \"sensor\": \"ESP32_01\"}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 320,
+        "wires": [
+            [
+                "f8849ae1a17d720c"
+            ]
+        ]
+    },
+    {
+        "id": "f8849ae1a17d720c",
+        "type": "mqtt out",
+        "z": "432cfe6a4b17110b",
+        "name": "",
+        "topic": "campus/lab1/humidity",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b807c1dca1f57468",
+        "x": 540,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "21db478019fb4ad3",
+        "type": "mqtt in",
+        "z": "432cfe6a4b17110b",
+        "name": "",
+        "topic": "campus/lab1/temperature/Dr Soo",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b807c1dca1f57468",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 330,
+        "y": 400,
+        "wires": [
+            [
+                "aa03105126cd020a"
+            ]
+        ]
+    },
+    {
+        "id": "aa03105126cd020a",
+        "type": "debug",
+        "z": "432cfe6a4b17110b",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "b807c1dca1f57468",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "host.docker.internal",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
