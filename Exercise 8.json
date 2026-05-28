@@ -1,0 +1,166 @@
+[
+    {
+        "id": "6a65712536e58415",
+        "type": "tab",
+        "label": "Flow 7",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4514269d5db12a11",
+        "type": "mqtt in",
+        "z": "6a65712536e58415",
+        "name": "",
+        "topic": "campus/zone1/environment",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "b807c1dca1f57468",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 180,
+        "wires": [
+            [
+                "b99cc013c386eb4f",
+                "de1725efcf2db16b"
+            ]
+        ]
+    },
+    {
+        "id": "de1725efcf2db16b",
+        "type": "debug",
+        "z": "6a65712536e58415",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b112c312e17886b8",
+        "type": "debug",
+        "z": "6a65712536e58415",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b99cc013c386eb4f",
+        "type": "function",
+        "z": "6a65712536e58415",
+        "name": "parse mqtt",
+        "func": "//1. Capture the raw MQTT telemetry\nvar raw_data = msg.payload;\n\n//2. Construct the Time-Series compliant object\nvar ts_document = {\n    \"timestamp\": new Date(),    //Must match your Atlas time\n    \"sensor_id\": raw_data.sensor_id,\n    \"temperature\": raw_data.temperature,\n    \"humidity\": raw_data.humidity\n};\n\n//3. Pass the formatted document forward\nmsg.payload = ts_document;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "b112c312e17886b8",
+                "5057b9ff2eb27b8a"
+            ]
+        ]
+    },
+    {
+        "id": "5057b9ff2eb27b8a",
+        "type": "mongodb4",
+        "z": "6a65712536e58415",
+        "clientNode": "c19f032ef6980bc2",
+        "mode": "collection",
+        "collection": "environment_telemetry ",
+        "operation": "insertOne",
+        "output": "toArray",
+        "maxTimeMS": "0",
+        "handleDocId": false,
+        "name": "",
+        "x": 620,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b807c1dca1f57468",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "host.docker.internal",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c19f032ef6980bc2",
+        "type": "mongodb4-client",
+        "name": "MongoDB Docker",
+        "protocol": "mongodb",
+        "hostname": "mongodb://host.docker.internal:27017/smart_campus?directConnection=true",
+        "port": "",
+        "dbName": "smart_campus",
+        "appName": "",
+        "authSource": "",
+        "authMechanism": "DEFAULT",
+        "tls": false,
+        "tlsCAFile": "",
+        "tlsCertificateKeyFile": "",
+        "tlsInsecure": false,
+        "connectTimeoutMS": "30000",
+        "socketTimeoutMS": "0",
+        "minPoolSize": "0",
+        "maxPoolSize": "100",
+        "maxIdleTimeMS": "0",
+        "uri": "mongodb://host.docker.internal:27017/smart_campus?directConnection=true",
+        "advanced": "{}",
+        "uriTabActive": "tab-uri-advanced"
+    },
+    {
+        "id": "c2bc426fef46f078",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-mongodb4": "3.4.0"
+        }
+    }
+]
